@@ -12,8 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener
 {
-    int n1 = 0; int n2 =0; int n3 =0; int n4 =0;
-    EditText show_num;
+
+    TextView show_num;
     Button Number1; Button Number2; Button Number3; Button Number4;
     Button Number5; Button Number6; Button Number7; Button Number8;
     Button Number9; Button Number0; Button addbut;Button subbut;
@@ -53,47 +53,73 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-      switch (view.getId()){
-          case R.id.Number0:
-              show_num.setText("0");
-              break;
+        Button button = (Button) view;
+        String buttonText = button.getText().toString();
+        String dataToCalculate = show_num.getText().toString();
+        show_num.setText(buttonText);
 
-              case R.id.Number1:
-                  show_num.setText("1");
-                  break;
+        if(buttonText.equals("C")) {
+            show_num.setText("");
+            return;
+        }
+        if(buttonText.equals("=")){
+            show_num.setText(show_num.getText());
+        }
+        else {
+            dataToCalculate = dataToCalculate + buttonText;
+        }
+        show_num.setText(dataToCalculate);
 
-          case R.id.Number2:
-              show_num.setText("2");
-              break;
+//      switch (view.getId()){
+//          case R.id.Number0:
+//              show_num.setText("0");
+//              break;
+//              case R.id.Number1:
+//                  show_num.setText("1");
+//                  break;
+//          case R.id.Number2:
+//              show_num.setText("2");
+//              break;
+//          case R.id.Number3:
+//              show_num.setText("3");
+//              break;
+//          case R.id.Number4:
+//              show_num.setText("4");
+//              break;
+//          case R.id.Number5:
+//              show_num.setText("5");
+//              break;
+//          case R.id.Number6:
+//              show_num.setText("6");
+//              break;
+//          case R.id.Number7:
+//              show_num.setText("7");
+//              break;
+//          case R.id.Number8:
+//              show_num.setText("8");
+//              break;
+//          case R.id.Number9:
+//              show_num.setText("9");
+//              break;
+//          case R.id.addbutton:
+//              show_num.setText("+");
+//              break;
+//          case R.id.subbutton:
+//              show_num.setText("-");
+//              break;
+//          case R.id.timesbutton:button:
+//              show_num.setText("*");
+//              break;
+//          case R.id.divisionbutton:
+//              show_num.setText("/");
+//              break;
+//          case R.id.clearbutton:
+//              show_num.setText("c");
+//              break;
+//          case R.id.equalbutton:
+//              show_num.setText("=");
+//              break;
 
-          case R.id.Number3:
-              show_num.setText("3");
-              break;
-
-          case R.id.Number4:
-              show_num.setText("4");
-              break;
-          case R.id.Number5:
-              show_num.setText("5");
-              break;
-          case R.id.Number6:
-              show_num.setText("6");
-              break;
-          case R.id.Number7:
-              show_num.setText("7");
-              break;
-
-          case R.id.Number8:
-              show_num.setText("8");
-              break;
-
-          case R.id.Number9:
-              show_num.setText("9");
-              break;
-
-          case R.id.addbutton:
-              show_num.setText("+");
-              break;
 
 
 
@@ -101,4 +127,3 @@ public class MainActivity extends AppCompatActivity
       }
 
     }
-}

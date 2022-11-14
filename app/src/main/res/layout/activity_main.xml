@@ -38,7 +38,7 @@
         android:textFontWeight="@integer/material_motion_duration_medium_1"
         android:textSize="20sp"
         android:visibility="visible"
-        tools:ignore="HardcodedText,RtlCompat" />
+         />
 
 <LinearLayout
     android:layout_width="wrap_content"
