@@ -25,12 +25,12 @@
     <!--result-->
     <TextView
 
-        android:id="@+id/Result"
+        android:id="@+id/shownumbers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="start"
-        android:hint="@string/InputNumbers"
+        android:text=""
         android:minHeight="40dp"
         android:textAlignment="textStart"
         android:textColor="@color/black"

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lab1Andriod</string>
     <string name="Add">+</string>
-    <string name="InputNumbers">InputNumbers</string>
+    <string name="InputNumbers">shownumbers</string>
     <string name="_2">2</string>
     <string name="_5">5</string>
     <string name="_6">6</string>
