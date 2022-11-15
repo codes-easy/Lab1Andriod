@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity
     Button timesbut;Button divbut;Button clearbut;Button equalbut;
     Button HistoryStd;
     Button HistoryAdv;
+    calculate calc = new calculate();
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -50,25 +51,34 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
+    boolean isNewOperator = true;
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
         String buttonText = button.getText().toString();
         String dataToCalculate = show_num.getText().toString();
-        show_num.setText(buttonText);
+       // show_num.setText(buttonText);
+
+        if(isNewOperator)
+            show_num.setText("");
+        isNewOperator =false;
 
         if(buttonText.equals("C")) {
             show_num.setText("");
+            dataToCalculate="";
             return;
         }
         if(buttonText.equals("=")){
-            show_num.setText(show_num.getText());
+            //show_num.setText(show_num.getText().toString()+"=");
+
+            show_num.setText(String.valueOf(calc.calculatefn(buttonText)));
         }
         else {
             dataToCalculate = dataToCalculate + buttonText;
+            show_num.setText(dataToCalculate);
+            calc.calculatefn(buttonText);
         }
-        show_num.setText(dataToCalculate);
+
 
 //      switch (view.getId()){
 //          case R.id.Number0:
