@@ -295,6 +295,7 @@
 
 </LinearLayout>
     <!--History button-->
+
 <Button
    android:id="@+id/StdNoHistory"
     android:layout_width="wrap_content"
@@ -303,7 +304,21 @@
     android:text="@string/standar_no_history"
     android:layout_gravity="center"
     android:backgroundTint="@color/DimGray"
+    android:visibility="gone"
+
+
     />
+    <Button
+        android:id="@+id/AdvanceHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/advance_history"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/DimGray"
+        android:visibility="visible"
+        />
+
 
 
 
