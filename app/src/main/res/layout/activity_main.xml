@@ -301,13 +301,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:text="@string/standar_no_history"
+    android:text="@string/standardNoHistory"
     android:layout_gravity="center"
     android:backgroundTint="@color/DimGray"
     android:visibility="gone"
 
 
-    />
+/>
     <Button
         android:id="@+id/AdvanceHistoryBut"
         android:layout_width="wrap_content"

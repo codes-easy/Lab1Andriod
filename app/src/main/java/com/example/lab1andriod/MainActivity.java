@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
+    //define all buttons, text views
 
     TextView show_num;
     TextView HistView;
@@ -34,13 +35,17 @@ public class MainActivity extends AppCompatActivity
     Button clearbut;
     Button equalbut;
     Button HistoryStd;
-    Button AdvanceHistory;
+    Button AdvanceHistoryBut;
+
+
     calculate calc = new calculate();
     String dataToCalculate = "";
     boolean flag = true;
     String regex = "[0-9]+";
     //ArrayList<String> AdvHistoryView = new ArrayList<String>();
     String resultfinal;
+    boolean isAdvance = false;
+
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +70,8 @@ public class MainActivity extends AppCompatActivity
         clearbut = findViewById(R.id.clearbutton);
         equalbut = findViewById(R.id.equalbutton);
         HistoryStd = findViewById(R.id.StdNoHistory);
-        AdvanceHistory = findViewById(R.id.AdvanceHistoryBut);
-        HistView=findViewById(R.id.HistoryView);
+        AdvanceHistoryBut = findViewById(R.id.AdvanceHistoryBut);
+        HistView = findViewById(R.id.HistoryView);
 
         Number1.setOnClickListener(this);
         Number2.setOnClickListener(this);
@@ -84,87 +89,83 @@ public class MainActivity extends AppCompatActivity
         divbut.setOnClickListener(this);
         equalbut.setOnClickListener(this);
         clearbut.setOnClickListener(this);
-       HistoryStd.setOnClickListener(this);
+        HistoryStd.setOnClickListener(this);
         show_num.setOnClickListener(this);
-        AdvanceHistory.setOnClickListener(this);
+        AdvanceHistoryBut.setOnClickListener(this);
 
         HistoryStd.setVisibility(View.GONE);
         HistView.setVisibility(View.GONE);
+
+
     }
+
     boolean isNewOperator = true;
+
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
         String buttonText = button.getText().toString();
         //String dataToCalculate = show_num.getText().toString();
         // show_num.setText(buttonText);
-
-        if (isNewOperator)
+        if (isNewOperator) // this operator brings single digit number each time
             show_num.setText("");
         isNewOperator = false;
-
-
-        if (buttonText.equals("Advance History")){
-            //HistoryView.setText(View.GONE);
-            HistView.setText("Pinal");
-            AdvanceHistory.setVisibility(View.GONE);
+        // When user click on Advance History;
+        //1) "Std NO history" button should be visible in green colour
+        //2) "AdvanceHistoryBut" button should be invisible
+        //3) History view should visible
+              if (buttonText.equals("Advance History")) {
+            resultfinal = "";
+            HistView.setVisibility(View.VISIBLE);
+            HistView.setText("");
+            HistView.append(resultfinal + "\n");
+            HistoryStd.setBackgroundColor(getResources().getColor(R.color.green));
+            AdvanceHistoryBut.setVisibility(View.GONE);
             HistoryStd.setVisibility(View.VISIBLE);
-                      }
-        else if (buttonText.equals("standar_no_history")) {
-
-           // HistoryView.setVisibility(View.VISIBLE);
-            AdvanceHistory.setVisibility(View.VISIBLE);
+            //  When user click on Standard History Button;
+            //      1) "Std NO history" button should be invisible
+            //      2) "AdvanceHistoryBut" button should be visible in Navy colour
+            //      3) History view should be invisible
+        } else if (buttonText.equals("Standard - No History")) {
+            HistView.setVisibility(View.GONE);
+            AdvanceHistoryBut.setVisibility(View.VISIBLE);
             HistoryStd.setVisibility(View.GONE);
+            AdvanceHistoryBut.setBackgroundColor(getResources().getColor(R.color.navy));
         }
-        if (buttonText.equals("C")) {
+        if (buttonText.equals("C")) {  // Button "C" will clear text and also clear array
             flag = true;
             show_num.setText("");
             dataToCalculate = "";
-            //also this is used
-//            calc.fn.clear();
-//            calc.sm.clear();
-//            calc.result = 0;
 
-            //return;
-        } else if (buttonText.equals("=")) {
-            //show_num.setText(show_num.getText().toString()+"=");
+        } else if (buttonText.equals("=")) { //Button "=" will show all calculation that user input,sing '=' , result.
             resultfinal = dataToCalculate + " = " + String.valueOf(calc.calculatefn(buttonText));
             show_num.setText(resultfinal);
-          //  AdvHistoryView.add(resultfinal);
             HistView.append(resultfinal + "\n");
-
-        } else if (buttonText.matches(regex) )//validating numbers (0-9) using regex function
-            {
-                if (flag) {
-                    dataToCalculate = dataToCalculate + buttonText;
-                    show_num.setText(dataToCalculate);
-                    calc.calculatefn(buttonText);
-                    flag = false;
-                } else {
-                    Toast.makeText(MainActivity.this, "ADD OPERATOR", Toast.LENGTH_SHORT).show();
-                }
-            } else  if (!flag && calc.sym.contains(buttonText) ) //check 4 function, taking values from sym array from claclulator class. {
-
-                //if (buttonText.equals("+") || buttonText.equals("*") || buttonText.equals("/")|| buttonText.equals("-")) {
-
-                {
-                    dataToCalculate = dataToCalculate + buttonText;
-                    show_num.setText(dataToCalculate);
-                    calc.calculatefn(buttonText);
-                    flag = true;
-                } else {
-                    Toast.makeText(MainActivity.this, "ADD number", Toast.LENGTH_SHORT).show();
-                }
-// AdvanceHistory = findViewById(R.id.AdvanceHistory);
-
+        //If user inputs two numbers togather, it will show message to add operator
+        } else if (buttonText.matches(regex)) { //validating numbers (0-9) using regex function
+            if (flag) {
+                dataToCalculate = dataToCalculate + buttonText;
+                show_num.setText(dataToCalculate);
+                calc.calculatefn(buttonText);
+                flag = false;
+            } else {
+                Toast.makeText(MainActivity.this, "PLEASE ADD OPERATOR", Toast.LENGTH_SHORT).show();
+                //If user inputs two operators togather, it will show message to add operator
+            }
+        } else if (!flag && calc.sym.contains(buttonText)) //check 4 function, taking values from sym array from calculator class. {
+               {
+            dataToCalculate = dataToCalculate + buttonText;
+            show_num.setText(dataToCalculate);
+            calc.calculatefn(buttonText);
+            flag = true;
+        } else if(buttonText.equals(regex)) { //also validating condition for number 0-9.
+            Toast.makeText(MainActivity.this, "PLEASE ADD NUMBER", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
 
-
-
-
-                    }
+}
 
 
 

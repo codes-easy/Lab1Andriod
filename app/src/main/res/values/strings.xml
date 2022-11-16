@@ -7,7 +7,8 @@
     <string name="_6">6</string>
     <string name="_9">9</string>
     <string name="Times">*</string>
-    <string name="standar_no_history">Standar-No History</string>
+<!--    <string name="standar-no history">Standar-No History</string>-->
+    <string name="standardNoHistory">Standard - No History</string>
     <string name="_0">0</string>
     <string name="Equals">=</string>
     <string name="Div">/</string>
@@ -22,5 +23,6 @@
     <string name="_1">1</string>
     <string name="AdvanceHistoryBut">Advance History</string>
     <string name="HistoryView">showHis</string>
+
 <!--    <string name="advance-history">Advance-history</string>-->
 </resources>
