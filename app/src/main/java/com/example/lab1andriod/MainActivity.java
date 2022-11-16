@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
     TextView show_num;
-    TextView HistoryView;
+    TextView HistView;
     Button Number1;
     Button Number2;
     Button Number3;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         equalbut = findViewById(R.id.equalbutton);
         HistoryStd = findViewById(R.id.StdNoHistory);
         AdvanceHistory = findViewById(R.id.AdvanceHistoryBut);
-        HistoryView=findViewById(R.id.HistoryView);
+        HistView=findViewById(R.id.HistoryView);
 
         Number1.setOnClickListener(this);
         Number2.setOnClickListener(this);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         AdvanceHistory.setOnClickListener(this);
 
         HistoryStd.setVisibility(View.GONE);
-        HistoryView.setVisibility(View.GONE);
+        HistView.setVisibility(View.GONE);
     }
     boolean isNewOperator = true;
     @Override
@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity
 
         if (buttonText.equals("Advance History")){
             //HistoryView.setText(View.GONE);
+            HistView.setText("Pinal");
             AdvanceHistory.setVisibility(View.GONE);
             HistoryStd.setVisibility(View.VISIBLE);
-            HistoryView.setText("Pinal");
-        }
+                      }
         else if (buttonText.equals("standar_no_history")) {
 
            // HistoryView.setVisibility(View.VISIBLE);
@@ -125,15 +125,15 @@ public class MainActivity extends AppCompatActivity
 //            calc.sm.clear();
 //            calc.result = 0;
 
-            return;
+            //return;
         } else if (buttonText.equals("=")) {
             //show_num.setText(show_num.getText().toString()+"=");
             resultfinal = dataToCalculate + " = " + String.valueOf(calc.calculatefn(buttonText));
             show_num.setText(resultfinal);
           //  AdvHistoryView.add(resultfinal);
-            HistoryView.append(resultfinal + "\n");
+            HistView.append(resultfinal + "\n");
 
-        } else if (buttonText.matches(regex) )//validating numbers (0-9) using regex function
+        } else if (buttonText.matches(regex) || buttonText.equals("standar-no history"))//validating numbers (0-9) using regex function
             {
                 if (flag) {
                     dataToCalculate = dataToCalculate + buttonText;
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(MainActivity.this, "ADD OPERATOR", Toast.LENGTH_SHORT).show();
                 }
-            } else  if (!flag && calc.sym.contains(buttonText)) //check 4 function, taking values from sym array from claclulator class. {
+            } else  if (!flag && calc.sym.contains(buttonText) || buttonText.equals("standar-no history")) //check 4 function, taking values from sym array from claclulator class. {
 
                 //if (buttonText.equals("+") || buttonText.equals("*") || buttonText.equals("/")|| buttonText.equals("-")) {
 

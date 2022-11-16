@@ -21,5 +21,6 @@
     <string name="assignment1">Assignment1</string>
     <string name="_1">1</string>
     <string name="AdvanceHistoryBut">Advance History</string>
+    <string name="HistoryView">showHis</string>
 <!--    <string name="advance-history">Advance-history</string>-->
 </resources>
