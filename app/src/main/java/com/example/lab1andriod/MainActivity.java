@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
           //  AdvHistoryView.add(resultfinal);
             HistView.append(resultfinal + "\n");
 
-        } else if (buttonText.matches(regex) || buttonText.equals("standar-no history"))//validating numbers (0-9) using regex function
+        } else if (buttonText.matches(regex) )//validating numbers (0-9) using regex function
             {
                 if (flag) {
                     dataToCalculate = dataToCalculate + buttonText;
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(MainActivity.this, "ADD OPERATOR", Toast.LENGTH_SHORT).show();
                 }
-            } else  if (!flag && calc.sym.contains(buttonText) || buttonText.equals("standar-no history")) //check 4 function, taking values from sym array from claclulator class. {
+            } else  if (!flag && calc.sym.contains(buttonText) ) //check 4 function, taking values from sym array from claclulator class. {
 
                 //if (buttonText.equals("+") || buttonText.equals("*") || buttonText.equals("/")|| buttonText.equals("-")) {
 
