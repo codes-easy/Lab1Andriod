@@ -11,7 +11,7 @@ public class calculate {
     ArrayList<String> sm = new ArrayList<String>();
     ArrayList<String> fn = new ArrayList<String>();
 
-    List<String> sym= Arrays.asList("*","-","+","/","=");
+    List<String> sym= Arrays.asList("*","-","+","/");
 
 
     int result=0;
@@ -26,11 +26,11 @@ public class calculate {
             }
         }
          if (value.equals("=")){
-             int r=getResult();
-             fn.clear();
+             int r=getResult(); //(result stored in variable r //
+             fn.clear(); //so cleared both arrays//
              sm.clear();
+             result = 0;
             return r;
-
          }
          return 0;
     }

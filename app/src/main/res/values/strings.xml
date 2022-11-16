@@ -20,5 +20,6 @@
     <string name="_3">3</string>
     <string name="assignment1">Assignment1</string>
     <string name="_1">1</string>
-    <string name="advance_history">Advance-history</string>
+    <string name="AdvanceHistoryBut">Advance History</string>
+<!--    <string name="advance-history">Advance-history</string>-->
 </resources>

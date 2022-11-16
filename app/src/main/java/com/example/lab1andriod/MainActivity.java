@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
     TextView show_num;
+    TextView HistoryView;
     Button Number1;
     Button Number2;
     Button Number3;
@@ -33,12 +34,13 @@ public class MainActivity extends AppCompatActivity
     Button clearbut;
     Button equalbut;
     Button HistoryStd;
-    Button HistoryAdv;
+    Button AdvanceHistory;
     calculate calc = new calculate();
     String dataToCalculate = "";
     boolean flag = true;
-
-
+    String regex = "[0-9]+";
+    //ArrayList<String> AdvHistoryView = new ArrayList<String>();
+    String resultfinal;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity
         clearbut = findViewById(R.id.clearbutton);
         equalbut = findViewById(R.id.equalbutton);
         HistoryStd = findViewById(R.id.StdNoHistory);
+        AdvanceHistory = findViewById(R.id.AdvanceHistoryBut);
+        HistoryView=findViewById(R.id.HistoryView);
 
         Number1.setOnClickListener(this);
         Number2.setOnClickListener(this);
@@ -80,19 +84,18 @@ public class MainActivity extends AppCompatActivity
         divbut.setOnClickListener(this);
         equalbut.setOnClickListener(this);
         clearbut.setOnClickListener(this);
-        HistoryStd.setOnClickListener(this);
+       HistoryStd.setOnClickListener(this);
         show_num.setOnClickListener(this);
+        AdvanceHistory.setOnClickListener(this);
 
-
+        HistoryStd.setVisibility(View.GONE);
+        HistoryView.setVisibility(View.GONE);
     }
-
     boolean isNewOperator = true;
-
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
         String buttonText = button.getText().toString();
-
         //String dataToCalculate = show_num.getText().toString();
         // show_num.setText(buttonText);
 
@@ -100,26 +103,38 @@ public class MainActivity extends AppCompatActivity
             show_num.setText("");
         isNewOperator = false;
 
+
+        if (buttonText.equals("Advance History")){
+            //HistoryView.setText(View.GONE);
+            AdvanceHistory.setVisibility(View.GONE);
+            HistoryStd.setVisibility(View.VISIBLE);
+            HistoryView.setText("Pinal");
+        }
+        else if (buttonText.equals("standar_no_history")) {
+
+           // HistoryView.setVisibility(View.VISIBLE);
+            AdvanceHistory.setVisibility(View.VISIBLE);
+            HistoryStd.setVisibility(View.GONE);
+        }
         if (buttonText.equals("C")) {
             flag = true;
             show_num.setText("");
             dataToCalculate = "";
-
             //also this is used
-            calc.fn.clear();
-            calc.sm.clear();
-            calc.result = 0;
+//            calc.fn.clear();
+//            calc.sm.clear();
+//            calc.result = 0;
 
             return;
         } else if (buttonText.equals("=")) {
             //show_num.setText(show_num.getText().toString()+"=");
+            resultfinal = dataToCalculate + " = " + String.valueOf(calc.calculatefn(buttonText));
+            show_num.setText(resultfinal);
+          //  AdvHistoryView.add(resultfinal);
+            HistoryView.append(resultfinal + "\n");
 
-            show_num.setText(dataToCalculate + "=" + String.valueOf(calc.calculatefn(buttonText)));
-        } else {
-            if (buttonText.equals("1") || buttonText.equals("2") || buttonText.equals("3") ||
-                    buttonText.equals("4") || buttonText.equals("5") || buttonText.equals("6") ||
-                    buttonText.equals("7") || buttonText.equals("8") || buttonText.equals("9") ||
-                    buttonText.equals("0") ) {
+        } else if (buttonText.matches(regex) )//validating numbers (0-9) using regex function
+            {
                 if (flag) {
                     dataToCalculate = dataToCalculate + buttonText;
                     show_num.setText(dataToCalculate);
@@ -128,8 +143,11 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(MainActivity.this, "ADD OPERATOR", Toast.LENGTH_SHORT).show();
                 }
-            } else if (buttonText.equals("+") || buttonText.equals("*") || buttonText.equals("/")|| buttonText.equals("-")) {
-                if (!flag) {
+            } else  if (!flag && calc.sym.contains(buttonText)) //check 4 function, taking values from sym array from claclulator class. {
+
+                //if (buttonText.equals("+") || buttonText.equals("*") || buttonText.equals("/")|| buttonText.equals("-")) {
+
+                {
                     dataToCalculate = dataToCalculate + buttonText;
                     show_num.setText(dataToCalculate);
                     calc.calculatefn(buttonText);
@@ -137,68 +155,20 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(MainActivity.this, "ADD number", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-
-
-
-         /*   dataToCalculate = dataToCalculate + buttonText;
-            show_num.setText(dataToCalculate);
-            calc.calculatefn(buttonText);*/
-        }
-
-
-//      switch (view.getId()){
-//          case R.id.Number0:
-//              show_num.setText("0");
-//              break;
-//              case R.id.Number1:
-//                  show_num.setText("1");
-//                  break;
-//          case R.id.Number2:
-//              show_num.setText("2");
-//              break;
-//          case R.id.Number3:
-//              show_num.setText("3");
-//              break;
-//          case R.id.Number4:
-//              show_num.setText("4");
-//              break;
-//          case R.id.Number5:
-//              show_num.setText("5");
-//              break;
-//          case R.id.Number6:
-//              show_num.setText("6");
-//              break;
-//          case R.id.Number7:
-//              show_num.setText("7");
-//              break;
-//          case R.id.Number8:
-//              show_num.setText("8");
-//              break;
-//          case R.id.Number9:
-//              show_num.setText("9");
-//              break;
-//          case R.id.addbutton:
-//              show_num.setText("+");
-//              break;
-//          case R.id.subbutton:
-//              show_num.setText("-");
-//              break;
-//          case R.id.timesbutton:button:
-//              show_num.setText("*");
-//              break;
-//          case R.id.divisionbutton:
-//              show_num.setText("/");
-//              break;
-//          case R.id.clearbutton:
-//              show_num.setText("c");
-//              break;
-//          case R.id.equalbutton:
-//              show_num.setText("=");
-//              break;
+// AdvanceHistory = findViewById(R.id.AdvanceHistory);
 
 
     }
 
-}
+
+
+
+
+                    }
+
+
+
+
+
+
+
