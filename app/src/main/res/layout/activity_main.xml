@@ -17,7 +17,7 @@
         android:background="@color/Salmon"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:minHeight="70dp"
+        android:minHeight="50dp"
         android:paddingVertical="20dp"
 
         />
@@ -28,17 +28,19 @@
         android:id="@+id/shownumbers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:background="@color/white"
         android:gravity="start"
-        android:text=""
         android:minHeight="40dp"
+        android:text=""
         android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         android:textColorHint="#78909C"
         android:textFontWeight="@integer/material_motion_duration_medium_1"
         android:textSize="20sp"
-        android:visibility="visible"
-         />
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 <LinearLayout
     android:layout_width="wrap_content"
@@ -329,8 +331,9 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:layout_marginLeft="20dp"
 
-        />
+        android:textStyle="bold" />
 
 
 
